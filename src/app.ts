@@ -43,8 +43,8 @@ export class Application {
   }
 
   setupDbAndServer = async () => {
-    const conn = await createConnection();
-    this.logger.info(`Connected to database. Connection: ${conn.name} / ${conn.options.database}`);
+    // const conn = await createConnection();
+    // this.logger.info(`Connected to database. Connection: ${conn.name} / ${conn.options.database}`);
     await this.startServer();
   }
 

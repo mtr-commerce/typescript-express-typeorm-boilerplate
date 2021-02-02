@@ -10,11 +10,11 @@ const isTestEnvironment = process.env.NODE_ENV === 'test';
 export default {
   errors,
   messages,
-  name: 'V2X Core',
+  name: 'Masa Kino',
   version: '1.0',
-  host: process.env.APP_HOST || '127.0.0.1',
+  host: process.env.HOST || '127.0.0.1',
   environment: process.env.NODE_ENV || 'development',
-  port: (isTestEnvironment ? process.env.TEST_APP_PORT : process.env.APP_PORT) || '8000',
+  port: (isTestEnvironment ? process.env.TEST_APP_PORT : process.env.PORT) || '8000',
   pagination: {
     page: 1,
     maxRows: 20
