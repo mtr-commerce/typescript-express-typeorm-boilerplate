@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "NODE_ENV=production node dist/index.js",
     "clean": "rimraf dist",
     "build": "tsc -v && npm run clean && npm run tslint && npm run build-ts",
     "build-ts": "tsc",
