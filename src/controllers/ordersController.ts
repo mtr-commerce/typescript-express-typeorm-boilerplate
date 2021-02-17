@@ -10,15 +10,16 @@ const logger: ILogger = new Logger(__filename);
 const ordersRouter: Router = Router();
 
 ordersRouter.post('/', async (req: Request, res: Response) => {
-  logger.info(optionsToProductbody(req.body));
+  logger.info(JSON.stringify(req.body));
+  logger.info(optionsToProductbody(req.body.toppings));
 
   const productsService = new ProductsService();
-  const params: ProductDetails = buildProductPayload(req.body);
+  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings);
   const products = await productsService.create(params);
 
   res.status(HttpStatus.OK).json({
     success: true,
-    products,
+    id: products.variants[0].id,
   });
 
 });

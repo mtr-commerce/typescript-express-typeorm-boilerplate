@@ -1,9 +1,9 @@
 export const PRODUCT_CREATION = {
-  title: 'Capture order',
-  vendor: 'Capture',
-  product_type: 'Mix',
+  title: 'Bowl Order',
+  vendor: 'MASA',
+  product_type: 'Ensalada',
   tags: [
-    'capture_app',
+    'bowl_app',
     'custom_order',
   ]
 };

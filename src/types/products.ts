@@ -1,6 +1,6 @@
 
 export interface ProductDetails {
-  title: string;
+  title: string | string[];
   body_html: string;
   vendor: string;
   product_type: string;

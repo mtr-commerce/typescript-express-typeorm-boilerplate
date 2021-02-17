@@ -3,7 +3,7 @@ import { PRODUCT_CREATION } from '../constants/products';
 import { IDictionary } from '../types/global';
 import { priceBuilder } from '../utils/prices';
 
-const BOWL_PRODUCT_IMAGE = '';
+const { BOWL_PRODUCT_IMAGE } = process.env;
 
 export const optionsToProductbody = (options: IDictionary<string[]>): string => {
   const concatOptions = (opt: string[]) => opt.map((i: string) => ` • ${i}`).join('<br />');
@@ -16,8 +16,8 @@ export const optionsToProductbody = (options: IDictionary<string[]>): string => 
   return test.join('<br /><br />');
 };
 
-export const buildProductPayload = (options: IDictionary<string[]>): ProductDetails => ({
-  title: PRODUCT_CREATION.title,
+export const buildProductPayload = (title: string, options: IDictionary<string[]>): ProductDetails => ({
+  title: title || PRODUCT_CREATION.title,
   body_html: optionsToProductbody(options),
   vendor: PRODUCT_CREATION.vendor,
   product_type: PRODUCT_CREATION.product_type,
