@@ -17,7 +17,7 @@ productRouter.get('/', async (req: Request, res: Response) => {
 
 
   const productsService = new ProductsService();
-  const params: ProductDetails = buildProductPayload(req.body);
+  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings);
   const products = await productsService.create(params);
 
   res.status(HttpStatus.OK).json({
@@ -29,25 +29,10 @@ productRouter.get('/', async (req: Request, res: Response) => {
 });
 
 productRouter.post('/', async (req: Request, res: Response) => {
-  const inventoryService = new InventoryService();
-  const locations = await inventoryService.locations();
-  const locationsIds = JSON.parse(JSON.stringify(locations)).map((i: InventoryLocation) => i.id);
-  const productInventoryId = req.body.variants[0].inventory_item_id;
-  const updateTrackingToProduct = await inventoryService.inventoryItem(productInventoryId, { tracked: true });
+  const productService = new ProductsService();
+  const locations = await productService.create(req.body);
 
   logger.info('------------------------------------------req.body)', req.body);
-  logger.info('------------------------------------------LOCATIONS)', locationsIds);
-  logger.info('------------------------------------------Variant item id)', productInventoryId, updateTrackingToProduct);
-
-  locationsIds.forEach(async (id: number) => {
-    const params: InventorySet = {
-      location_id: id,
-      inventory_item_id: productInventoryId,
-      available: 1
-    };
-
-    await inventoryService.inventoryLevel(params);
-  });
 
 
   res.status(HttpStatus.OK).json({
