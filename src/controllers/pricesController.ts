@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import * as HttpStatus from 'http-status-codes';
 import { Logger, ILogger } from '../utils/logger';
-import { priceList, priceBuilder } from '../utils/prices';
+import { priceList, priceBuilder, MIN_PRICE } from '../utils/prices';
 
 const logger: ILogger = new Logger(__filename);
 
@@ -11,6 +11,7 @@ pricesRouter.get('/', async (req: Request, res: Response) => {
   res.status(HttpStatus.OK).json({
     success: true,
     toppings: priceList,
+    basePrice: MIN_PRICE
   });
 });
 
