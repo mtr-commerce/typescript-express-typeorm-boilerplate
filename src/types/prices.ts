@@ -1,6 +1,7 @@
 export interface OptionsValue {
   name: string;
   value: number;
+  img: string;
 }
 
 export type ReceivedOptionsValues = {

@@ -17,7 +17,7 @@ productRouter.get('/', async (req: Request, res: Response) => {
 
 
   const productsService = new ProductsService();
-  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings);
+  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings, req.body.instructions);
   const products = await productsService.create(params);
 
   res.status(HttpStatus.OK).json({

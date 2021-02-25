@@ -11,10 +11,10 @@ const ordersRouter: Router = Router();
 
 ordersRouter.post('/', async (req: Request, res: Response) => {
   logger.info(JSON.stringify(req.body));
-  logger.info(optionsToProductbody(req.body.toppings));
+  logger.info(optionsToProductbody(req.body.toppings, req.body.instructions));
 
   const productsService = new ProductsService();
-  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings);
+  const params: ProductDetails = buildProductPayload(req.body.name, req.body.toppings, req.body.instructions);
   const products = await productsService.create(params);
 
   res.status(HttpStatus.OK).json({
