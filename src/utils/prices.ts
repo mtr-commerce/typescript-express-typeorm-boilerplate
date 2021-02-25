@@ -346,10 +346,15 @@ export const priceBuilder = (options: ReceivedOptionsValues): number => {
   const accumulator: OptionsValue[] = [];
   optionsKeys.map(key => {
     const toppings = options[key];
-    const test = toppings.forEach(t => {
+
+    toppings.forEach(t => {
       return priceList[key].forEach(o => {
-        if (t === o.name) {
-          accumulator.push(o);
+        const itemSplit = t.split('|');
+        const itemQty = parseInt(itemSplit[1] || '1');
+        if (itemSplit[0] === o.name) {
+          for (let index = 0; index < itemQty; index++) {
+            accumulator.push(o);
+          }
         }
       });
     });
