@@ -24,7 +24,7 @@ export const optionsToProductbody = (options: IDictionary<string[]>, instruction
 };
 
 export const buildProductPayload = (title: string, options: IDictionary<string[]>, instructions: string[]): ProductDetails => ({
-  title: title || PRODUCT_CREATION.title,
+  title: PRODUCT_CREATION.title + ': ' + title,
   body_html: optionsToProductbody(options, instructions),
   vendor: PRODUCT_CREATION.vendor,
   product_type: PRODUCT_CREATION.product_type,
